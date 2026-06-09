@@ -1,0 +1,67 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const entries = await getCollection('asombros');
+  return entries.map((entry) => ({ params: { slug: entry.slug }, props: { entry } }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await entry.render();
+const { title, summary, discipline, sources } = entry.data;
+
+const DISC = { fisica:'Física', quimica:'Química', matematicas:'Matemáticas', biologia:'Biología', botanica:'Botánica', astronomia:'Astronomía' };
+const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
+
+// AEO: datos estructurados para que IAs y buscadores citen la respuesta.
+const jsonld = {
+  '@context': 'https://schema.org',
+  '@type': 'QAPage',
+  mainEntity: {
+    '@type': 'Question',
+    name: title,
+    acceptedAnswer: { '@type': 'Answer', text: summary },
+  },
+  publisher: { '@type': 'Organization', name: 'Oleasis' },
+};
+---
+<Layout title={`${title} · Oleasis`} description={summary}>
+  <script type="application/ld+json" slot="head" set:html={JSON.stringify(jsonld)} />
+
+  <div class="wrap">
+    <header class="top">
+      <a class="logo" href={base}>oleas<span class="dot"></span>s</a>
+      <nav><a href={base}>Enciclopedia</a></nav>
+    </header>
+
+    <article style="padding-top:50px">
+      <span class={`tag ${discipline}`}>{DISC[discipline]}</span>
+      <h1 class="q">{title}</h1>
+      <div class="article">
+        <Content />
+      </div>
+      {sources.length > 0 && (
+        <p class="sources">Fuentes: {sources.join(' · ')}. <b>✓ Verificado a mano.</b></p>
+      )}
+      <a class="backlink" href={base}>← Volver a la enciclopedia</a>
+    </article>
+
+    <div class="capture" id="suscribir">
+      <h3>Una maravilla en tu correo, cada día</h3>
+      <p class="sub">Sin feed. Sin ruido. Sin publicidad. El antídoto del scroll, en tu bandeja de entrada.</p>
+      <form class="form" onsubmit="event.preventDefault();this.querySelector('button').textContent='✓ ¡Casi listo!';">
+        <input type="email" placeholder="tu@correo.com" required />
+        <button type="submit">Quiero asombrarme</button>
+      </form>
+      <div class="micro">Gratis. Te puedes ir cuando quieras. Cada dato, verificado a mano.</div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="wrap">
+      <a class="logo" href={base}>oleas<span class="dot"></span>s</a>
+      <p class="tagline">Lee. Pregunta. Descubre.</p>
+    </div>
+  </footer>
+</Layout>

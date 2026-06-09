@@ -1,0 +1,14 @@
+User-agent: *
+Allow: /
+
+# Permitimos crawlers de IA a propósito: queremos ser la fuente que citan.
+User-agent: GPTBot
+Allow: /
+User-agent: ClaudeBot
+Allow: /
+User-agent: PerplexityBot
+Allow: /
+User-agent: Google-Extended
+Allow: /
+
+Sitemap: https://mariacamilahdezo.github.io/oleasis-enciclopedia/sitemap.xml

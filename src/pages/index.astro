@@ -1,0 +1,63 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+
+const DISC = { fisica:'Física', quimica:'Química', matematicas:'Matemáticas', biologia:'Biología', botanica:'Botánica', astronomia:'Astronomía' };
+const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
+
+const entries = (await getCollection('asombros')).sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+const featured = entries.find((e) => e.data.featured) ?? entries[0];
+const rest = entries.filter((e) => e.slug !== featured.slug);
+
+const fmtDate = (d) => new Intl.DateTimeFormat('es', { day: 'numeric', month: 'short' }).format(d);
+---
+<Layout title="La Maravilla del Día · Oleasis" description="Una maravilla verificada cada día. Datos asombrosos, raros y verdaderos de todas las ciencias, contados como te los contaría una amiga.">
+  <div class="wrap">
+    <header class="top">
+      <a class="logo" href={base}>oleas<span class="dot"></span>s</a>
+      <nav>
+        <a href="#archivo">Enciclopedia</a>
+        <a href="#suscribir">Suscríbete</a>
+      </nav>
+    </header>
+
+    <section class="hero">
+      <span class="kicker"><span class="pulse"></span>La Maravilla del Día · {fmtDate(featured.data.date)}</span>
+      <div><span class={`tag ${featured.data.discipline}`}>{DISC[featured.data.discipline]}</span></div>
+      <h1 class="q">{featured.data.title}</h1>
+      <p class="article" style="font-weight:500;font-size:20px">{featured.data.summary}</p>
+      <a class="card more" style="background:none;border:none;padding:0;margin-top:18px;font-size:15px" href={`${base}asombro/${featured.slug}`}>Leer la maravilla completa →</a>
+    </section>
+
+    <div class="capture" id="suscribir">
+      <h3>Una maravilla en tu correo, cada día</h3>
+      <p class="sub">Sin feed. Sin ruido. Sin publicidad. Un instante de "espera, ¿QUÉ?" cada mañana — el antídoto del scroll.</p>
+      <form class="form" onsubmit="event.preventDefault();this.querySelector('button').textContent='✓ ¡Casi listo!';">
+        <input type="email" placeholder="tu@correo.com" required />
+        <button type="submit">Quiero asombrarme</button>
+      </form>
+      <div class="micro">Gratis. Te puedes ir cuando quieras. Cada dato, verificado a mano.</div>
+    </div>
+
+    <h2 class="section-label" id="archivo">De la Enciclopedia</h2>
+    <div class="grid">
+      {rest.map((e) => (
+        <a class="card" href={`${base}asombro/${e.slug}`}>
+          <span class={`tag ${e.data.discipline}`}>{DISC[e.data.discipline]}</span>
+          <h4>{e.data.title}</h4>
+          <p>{e.data.summary}</p>
+          <span class="more">Leer la maravilla →</span>
+        </a>
+      ))}
+    </div>
+  </div>
+
+  <footer>
+    <div class="wrap">
+      <a class="logo" href={base}>oleas<span class="dot"></span>s</a>
+      <p>La Enciclopedia del Asombro. Donde el arte y la ciencia se vuelven la misma cosa: el placer de mirar de verdad.</p>
+      <p class="verify">Cada dato, investigado y <b>verificado a mano</b>. Nada inventado por una IA. El asombro solo vale si es verdad.</p>
+      <p class="tagline">Lee. Pregunta. Descubre.</p>
+    </div>
+  </footer>
+</Layout>
