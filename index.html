@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<!-- Preview interino: no indexar hasta el lanzamiento del sitio Astro con SEO completo -->
+<meta name="robots" content="noindex" />
+<title>La Maravilla del Día · Oleasis</title>
+<meta name="description" content="Una maravilla verificada cada día. Datos asombrosos, raros y verdaderos de todas las ciencias, contados como te los contaría una amiga. Oleasis — La Enciclopedia del Asombro." />
+
+<!-- OpenGraph / compartibilidad -->
+<meta property="og:type" content="article" />
+<meta property="og:title" content="¿La gravedad puede ser negativa? · Oleasis" />
+<meta property="og:description" content="No es una fuerza, es una aceleración. Y sí, existe algo parecido a la 'gravedad negativa': es el 68% del universo." />
+<meta property="og:site_name" content="Oleasis" />
+
+<!-- AEO: datos estructurados para que las IAs y buscadores citen la respuesta -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "QAPage",
+  "mainEntity": {
+    "@type": "Question",
+    "name": "¿La gravedad puede ser negativa?",
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "La gravedad no es una fuerza sino una aceleración (9,8 m/s²); en la relatividad de Einstein es la curvatura del espacio-tiempo. Como dirección puede tomarse como negativa. La versión más profunda: la energía oscura actúa como una gravedad repulsiva que acelera la expansión del universo, lo más cercano a una 'gravedad negativa' conocida, y constituye cerca del 68% del universo."
+    }
+  },
+  "publisher": { "@type": "Organization", "name": "Oleasis" }
+}
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --bg-primary:#111827;
+    --bg-secondary:#1F2937;
+    --bg-tertiary:#374151;
+    --text-primary:#F9FAFB;
+    --text-secondary:#9CA3AF;
+    --text-muted:#6B7280;
+    --blue:#3B82F6;
+    --amber:#F59E0B;
+    --green:#10B981;
+    --purple:#8B5CF6;
+    --red:#EF4444;
+    --border:rgba(255,255,255,.08);
+    --grad:linear-gradient(135deg,var(--blue),var(--amber) 25%,var(--green) 50%,var(--purple) 75%,var(--red));
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:'Montserrat',-apple-system,BlinkMacSystemFont,sans-serif;
+    background:var(--bg-primary);color:var(--text-primary);line-height:1.7;
+    -webkit-font-smoothing:antialiased;overflow-x:hidden;font-weight:400;
+  }
+  .wrap{max-width:780px;margin:0 auto;padding:0 24px}
+
+  /* logo con punto-gradiente */
+  .logo{font-weight:900;letter-spacing:-.04em}
+  .logo .dot{display:inline-block;width:.2em;height:.2em;background:var(--grad);border-radius:50%;margin:0 .03em;vertical-align:.62em}
+
+  header.top{display:flex;align-items:center;justify-content:space-between;padding:28px 0;border-bottom:1px solid var(--border)}
+  header.top .logo{font-size:24px}
+  header.top nav a{color:var(--text-secondary);text-decoration:none;font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;margin-left:22px;transition:color .2s}
+  header.top nav a:hover{color:var(--text-primary)}
+
+  /* hero glow de marca */
+  .hero{position:relative;padding:70px 0 10px}
+  .hero::before{content:'';position:absolute;top:-40px;left:50%;transform:translateX(-50%);width:560px;height:360px;background:var(--grad);filter:blur(150px);opacity:.14;border-radius:50%;z-index:0;pointer-events:none}
+  .hero>*{position:relative;z-index:1}
+
+  .kicker{display:inline-flex;align-items:center;gap:10px;font-size:12px;font-weight:600;letter-spacing:.3em;text-transform:uppercase;color:var(--text-secondary);padding:7px 16px;border:1px solid var(--border);border-radius:999px;background:rgba(255,255,255,.03);margin-bottom:26px}
+  .kicker .pulse{width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 0 0 rgba(16,185,129,.6);animation:pulse 2s infinite}
+  @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(16,185,129,.5)}70%{box-shadow:0 0 0 8px rgba(16,185,129,0)}100%{box-shadow:0 0 0 0 rgba(16,185,129,0)}}
+
+  .tag{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;padding:5px 12px;border-radius:999px;margin-bottom:24px}
+  .tag.fisica{color:var(--blue);background:rgba(59,130,246,.12)}
+  .tag.quimica{color:var(--green);background:rgba(16,185,129,.12)}
+  .tag.mates{color:var(--amber);background:rgba(245,158,11,.12)}
+  .tag.bot{color:var(--purple);background:rgba(139,92,246,.12)}
+
+  h1.q{font-weight:900;font-size:clamp(36px,7vw,64px);line-height:1;letter-spacing:-.04em;margin-bottom:30px}
+  .answer{font-size:18px}
+  .answer p{margin-bottom:20px}
+  .answer .lede{font-size:20px;font-weight:500;color:var(--text-primary)}
+  .answer strong{color:var(--blue);font-weight:700}
+  .abyss{position:relative;margin:32px 0;padding:28px 30px;border-radius:18px;background:var(--bg-secondary);border:1px solid var(--border);overflow:hidden}
+  .abyss::before{content:'';position:absolute;top:0;left:0;bottom:0;width:4px;background:var(--grad)}
+  .abyss b{font-weight:800;font-size:22px;letter-spacing:-.01em;display:block;line-height:1.25}
+  .source{font-size:13px;color:var(--text-muted);margin-top:6px}
+
+  /* captura */
+  .capture{margin:70px 0;padding:46px 36px;border:1px solid var(--border);border-radius:24px;background:linear-gradient(135deg,rgba(59,130,246,.06),rgba(139,92,246,.06),rgba(239,68,68,.05));text-align:center}
+  .capture h3{font-weight:900;font-size:clamp(26px,4vw,34px);letter-spacing:-.03em;margin-bottom:10px}
+  .capture .sub{color:var(--text-secondary);max-width:460px;margin:0 auto 26px}
+  .form{display:flex;gap:10px;max-width:440px;margin:0 auto;flex-wrap:wrap;justify-content:center}
+  .form input{flex:1;min-width:210px;background:var(--bg-primary);border:1px solid var(--border);color:var(--text-primary);padding:15px 16px;border-radius:12px;font-family:inherit;font-size:15px}
+  .form input:focus{outline:none;border-color:var(--blue)}
+  .form button{background:var(--blue);color:#fff;border:none;padding:15px 26px;border-radius:12px;font-family:inherit;font-weight:700;font-size:15px;cursor:pointer;transition:transform .15s,filter .15s}
+  .form button:hover{transform:translateY(-2px);filter:brightness(1.1)}
+  .micro{font-size:12px;color:var(--text-muted);margin-top:16px;font-weight:500}
+
+  /* archivo */
+  .section-label{font-size:12px;font-weight:600;letter-spacing:.3em;text-transform:uppercase;color:var(--text-muted);text-align:center;margin:0 0 28px}
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:80px}
+  .card{border:1px solid var(--border);border-radius:20px;padding:26px;background:var(--bg-secondary);transition:transform .18s,border-color .18s;cursor:pointer}
+  .card:hover{transform:translateY(-5px);border-color:rgba(255,255,255,.18)}
+  .card h4{font-weight:800;font-size:22px;line-height:1.15;letter-spacing:-.02em;margin-bottom:10px}
+  .card p{font-size:14px;color:var(--text-secondary)}
+  .card .more{display:inline-block;margin-top:14px;font-size:13px;font-weight:600;color:var(--blue)}
+  .card.coming{display:flex;align-items:center;justify-content:center;text-align:center;border-style:dashed;background:transparent}
+
+  footer{border-top:1px solid var(--border);padding:46px 0 70px;text-align:center}
+  footer .logo{font-size:22px;margin-bottom:14px}
+  footer p{color:var(--text-secondary);font-size:14px;max-width:500px;margin:0 auto 6px}
+  footer .verify{margin-top:18px;font-size:12px;color:var(--text-muted);font-weight:500}
+  footer .verify b{color:var(--green);font-weight:700}
+  footer .tagline{margin-top:22px;font-weight:300;font-style:italic;color:var(--text-secondary)}
+
+  @media(max-width:600px){.grid{grid-template-columns:1fr}header.top nav a:first-child{display:none}}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header class="top">
+    <div class="logo">oleas<span class="dot"></span>s</div>
+    <nav>
+      <a href="#archivo">Enciclopedia</a>
+      <a href="#suscribir">Suscríbete</a>
+    </nav>
+  </header>
+
+  <!-- LA MARAVILLA DEL DÍA -->
+  <section class="hero">
+    <span class="kicker"><span class="pulse"></span>La Maravilla del Día · 9 jun</span>
+    <div><span class="tag fisica">Física</span></div>
+    <h1 class="q">¿La gravedad puede ser negativa?</h1>
+
+    <div class="answer">
+      <p class="lede">Tu novio te lo soltó en la cena y, sin querer, tocó uno de los misterios más grandes de la física. Vamos por partes.</p>
+      <p>Primer plot twist: la gravedad <strong>no es una fuerza</strong>. Es una <em>aceleración</em> — 9,8 metros por segundo, cada segundo. Y Einstein subió la apuesta: ni eso. Es la <strong>curvatura del espacio-tiempo</strong>. Eso que sientes como "peso" es pura aceleración. Caer en un ascensor y flotar en el espacio se sienten <em>idénticos</em> — Einstein lo llamó "el pensamiento más feliz de mi vida".</p>
+      <p>¿Y negativa? Como dirección, fácil: es "hacia el otro lado". Pero hay una versión salvaje, y es <em>real</em>: la <strong>energía oscura</strong> funciona como una gravedad que empuja en vez de jalar, separando el universo cada vez más rápido. Es lo más cerca de "gravedad negativa" que conocemos.</p>
+      <div class="abyss">
+        <b>Y es el 68 % del universo. Que nadie entiende todavía.</b>
+        De una pregunta de sobremesa al mayor misterio sin resolver de la física. Bienvenida a Oleasis.
+      </div>
+      <p class="source">Fuentes: principio de equivalencia (Einstein, 1907) · composición del universo, misión Planck/ESA. ✓ Verificado a mano.</p>
+    </div>
+  </section>
+
+  <!-- CAPTURA -->
+  <div class="capture" id="suscribir">
+    <h3>Una maravilla en tu correo, cada día</h3>
+    <p class="sub">Sin feed. Sin ruido. Sin publicidad. Un instante de "espera, ¿QUÉ?" cada mañana — el antídoto del scroll.</p>
+    <form class="form" onsubmit="event.preventDefault();this.querySelector('button').textContent='✓ ¡Casi listo!';">
+      <input type="email" placeholder="tu@correo.com" required />
+      <button type="submit">Quiero asombrarme</button>
+    </form>
+    <div class="micro">Gratis. Te puedes ir cuando quieras. Cada dato, verificado a mano.</div>
+  </div>
+
+  <!-- ARCHIVO -->
+  <h2 class="section-label" id="archivo">De la Enciclopedia</h2>
+  <div class="grid">
+    <div class="card">
+      <span class="tag quimica">Química</span>
+      <h4>¿Por qué los plátanos son radiactivos?</h4>
+      <p>Llevan potasio-40, un isótopo radiactivo. Tanto, que los científicos miden radiación en "dosis de plátano". Tendrías que comerte 10 millones de golpe para que importe.</p>
+      <span class="more">Leer la maravilla →</span>
+    </div>
+    <div class="card">
+      <span class="tag mates">Matemáticas</span>
+      <h4>¿Por qué no existe el número más grande?</h4>
+      <p>Siempre le puedes sumar uno. Por eso el infinito no es un número, es una dirección. Y agárrate: hay infinitos más grandes que otros infinitos.</p>
+      <span class="more">Leer la maravilla →</span>
+    </div>
+    <div class="card">
+      <span class="tag bot">Botánica</span>
+      <h4>¿Por qué las plantas son verdes... si es un desperdicio?</h4>
+      <p>El Sol brilla más en verde — y las plantas rechazan justo esa luz. Tiran su recurso más abundante. ¿La teoría? La vida prefiere ir estable, no a tope.</p>
+      <span class="more">Leer la maravilla →</span>
+    </div>
+    <div class="card coming">
+      <div>
+        <div style="font-weight:900;font-size:40px;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1">∞</div>
+        <p style="margin-top:8px;color:var(--text-secondary)">Una maravilla nueva<br>cada día.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <div class="logo">oleas<span class="dot"></span>s</div>
+    <p>La Enciclopedia del Asombro. Donde el arte y la ciencia se vuelven la misma cosa: el placer de mirar de verdad.</p>
+    <p class="verify">Cada dato, investigado y <b>verificado a mano</b>. Nada inventado por una IA. El asombro solo vale si es verdad.</p>
+    <p class="tagline">Lee. Pregunta. Descubre.</p>
+  </div>
+</footer>
+
+</body>
+</html>
