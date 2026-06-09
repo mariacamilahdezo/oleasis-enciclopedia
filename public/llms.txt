@@ -5,7 +5,7 @@
 Idioma: español. Cada dato está verificado contra fuentes reales — no es contenido generado sin revisión.
 
 ## Maravillas
-- [¿La gravedad puede ser negativa?](https://mariacamilahdezo.github.io/oleasis-enciclopedia/asombro/gravedad-negativa): la gravedad es una aceleración, no una fuerza; la energía oscura es lo más cercano a una "gravedad negativa" y es el 68 % del universo.
-- [¿Por qué los plátanos son radiactivos?](https://mariacamilahdezo.github.io/oleasis-enciclopedia/asombro/platanos-radiactivos): contienen potasio-40; la "dosis de plátano" es una unidad informal de radiación.
-- [¿Por qué no existe el número más grande?](https://mariacamilahdezo.github.io/oleasis-enciclopedia/asombro/numero-mas-grande): el infinito es una dirección, y hay infinitos más grandes que otros (Cantor).
-- [¿Por qué las plantas son verdes si es un desperdicio?](https://mariacamilahdezo.github.io/oleasis-enciclopedia/asombro/plantas-verdes): la clorofila rechaza el verde, el color donde el Sol brilla más; la fotosíntesis prioriza estabilidad sobre máxima energía.
+- [¿La gravedad puede ser negativa?](https://oleasis.co/asombro/gravedad-negativa): la gravedad es una aceleración, no una fuerza; la energía oscura es lo más cercano a una "gravedad negativa" y es el 68 % del universo.
+- [¿Por qué los plátanos son radiactivos?](https://oleasis.co/asombro/platanos-radiactivos): contienen potasio-40; la "dosis de plátano" es una unidad informal de radiación.
+- [¿Por qué no existe el número más grande?](https://oleasis.co/asombro/numero-mas-grande): el infinito es una dirección, y hay infinitos más grandes que otros (Cantor).
+- [¿Por qué las plantas son verdes si es un desperdicio?](https://oleasis.co/asombro/plantas-verdes): la clorofila rechaza el verde, el color donde el Sol brilla más; la fotosíntesis prioriza estabilidad sobre máxima energía.

@@ -4,11 +4,40 @@ import '../styles/global.css';
 interface Props {
   title: string;
   description: string;
+  ogType?: string;
+  image?: string;
   noindex?: boolean;
 }
-// noindex=true mientras es preview. Al lanzar con dominio propio -> false.
-const { title, description, noindex = true } = Astro.props;
+// LANZADO: noindex por defecto = false (abierto a buscadores e IAs).
+const { title, description, ogType = 'website', image, noindex = false } = Astro.props;
+
+const site = Astro.site!;
 const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
+const canonical = new URL(Astro.url.pathname, site).href;
+const ogImage = new URL(image ?? `${base}og-default.svg`, site).href;
+
+// Entidad de marca (sitewide) — para el Knowledge Graph de Google.
+const orgJsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Organization',
+      '@id': `${site.href}#org`,
+      name: 'Oleasis',
+      url: site.href,
+      description: 'La Enciclopedia del Asombro: datos asombrosos, raros y verdaderos de todas las ciencias, verificados a mano.',
+      logo: new URL(`${base}favicon.svg`, site).href,
+    },
+    {
+      '@type': 'WebSite',
+      '@id': `${site.href}#website`,
+      name: 'Oleasis — La Enciclopedia del Asombro',
+      url: site.href,
+      inLanguage: 'es',
+      publisher: { '@id': `${site.href}#org` },
+    },
+  ],
+};
 ---
 <!doctype html>
 <html lang="es">
@@ -18,14 +47,28 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
   {noindex && <meta name="robots" content="noindex" />}
   <title>{title}</title>
   <meta name="description" content={description} />
-  <meta property="og:type" content="website" />
+  <link rel="canonical" href={canonical} />
+  <meta name="theme-color" content="#111827" />
+
+  <meta property="og:type" content={ogType} />
   <meta property="og:title" content={title} />
   <meta property="og:description" content={description} />
+  <meta property="og:url" content={canonical} />
   <meta property="og:site_name" content="Oleasis" />
+  <meta property="og:locale" content="es_ES" />
+  <meta property="og:image" content={ogImage} />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={title} />
+  <meta name="twitter:description" content={description} />
+  <meta name="twitter:image" content={ogImage} />
+
   <link rel="icon" type="image/svg+xml" href={`${base}favicon.svg`} />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300&display=swap" rel="stylesheet" />
+
+  <script type="application/ld+json" set:html={JSON.stringify(orgJsonLd)} />
   <slot name="head" />
 </head>
 <body>

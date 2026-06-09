@@ -11,4 +11,4 @@ Allow: /
 User-agent: Google-Extended
 Allow: /
 
-Sitemap: https://mariacamilahdezo.github.io/oleasis-enciclopedia/sitemap.xml
+Sitemap: https://oleasis.co/sitemap.xml
